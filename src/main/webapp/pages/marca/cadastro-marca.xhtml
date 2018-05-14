@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:adm="http://github.com/adminfaces"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="title">
+        Cadastro Marca
+    </ui:define>
+
+    <ui:define name="body">
+        <f:metadata>
+        	<f:viewParam name="id" value="#{cadastroMarcaMB.idMarca}" converter="javax.faces.Long"/>
+        	<f:event listener="#{cadastroMarcaMB.inicializar()}" type="preRenderView"></f:event>
+        </f:metadata>
+
+        <adm:breadcrumb title="Cadastro Marca #{cadastroMarcaMB.marca.id}" link="cadastro-marca.xhtml?id=#{cadastroMarcaMB.marca.id}"/>
+        <h:form id="form" prependId="false">
+        	
+        	<p:focus for="capaPanel"/>			
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <div id="main-buttons" class="hidden-sm hidden-xs">
+                        <p:commandButton value="Salvar" update="@form"
+                        				 action="#{cadastroMarcaMB.salvar()}"
+                                         icon="fa fa-check" styleClass="btn-primary"/>
+                        <p:spacer width="5"/>
+
+                        <p:commandButton value="Excluir" process="@this"
+                        				 rendered="#{cadastroMarcaMB.marca.edicao}"
+                        				 action="#{cadastroMarcaMB.excluir()}"
+                                         icon="fa fa-trash"
+                                         styleClass="btn-danger">
+                        </p:commandButton>
+                        <p:spacer width="5"/>
+                        <p:commandButton value="Voltar" immediate="true"
+                                         action="lista-marca?faces-redirect=true"
+                                         process="@this"
+                                         icon="fa fa-close"/>
+                                         
+                    </div>
+                    
+                    <p:splitButton value="Salvar" update="@form"
+                                   icon="fa fa-check"
+                                   action="#{cadastroMarcaMB.salvar()}"
+                                   styleClass="hidden-md hidden-lg btn-primary">
+                        <p:menuitem value="Excluir"
+                        			rendered="#{cadastroMarcaMB.marca.edicao}"
+                        			action="#{cadastroMarcaMB.excluir()}"
+                                    process="@this"
+                                    icon="fa fa-trash"/>
+                        <p:separator/>
+                        <p:menuitem value="Voltar" action="lista-marca?faces-redirect=true" process="@this"
+                                    icon="fa fa-close"/>
+                    </p:splitButton>
+
+                    
+
+                    <p:separator/>
+
+                    <div class="ui-fluid">
+                    	<p:panelGrid id="capaPanel" columns="4" layout="grid">
+                    	
+                    		<p:outputLabel value="ID" for="id"/>
+                    		<p:inputText id="id" value="#{cadastroMarcaMB.marca.id}" disabled="true"/>                    	
+                    	
+                    		<p:outputLabel value="Descrição" for="descricao"/>
+                    		<p:inputText id="descricao" value="#{cadastroMarcaMB.marca.descricao}"/>                    		
+                    		
+ 							<p:outputLabel value="Criação" for="criacao"/>
+ 							<p:inputText id="criacao" value="#{cadastroMarcaMB.marca.dtCriacao}" disabled="true">
+ 								<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" timeZone="America/Sao_Paulo"/>
+ 							</p:inputText>
+ 							
+ 							<p:outputLabel value="Edição" for="edicao"/>
+ 							<p:inputText id="edicao" value="#{cadastroMarcaMB.marca.dtCriacao}" disabled="true">
+ 								<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" timeZone="America/Sao_Paulo"/>
+ 							</p:inputText>                    	
+ 							                    	
+                    	</p:panelGrid>
+                    
+                    </div>
+                </div>
+            </div>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
