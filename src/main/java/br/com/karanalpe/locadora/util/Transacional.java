@@ -1,4 +1,4 @@
-package br.com.karanalpe.crud.util;
+package br.com.karanalpe.locadora.util;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 import javax.interceptor.InterceptorBinding;
 
-@Target({ ElementType.METHOD, ElementType.TYPE})
+@Target({ ElementType.METHOD, ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @InterceptorBinding
 public @interface Transacional {

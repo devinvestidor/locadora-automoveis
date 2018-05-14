@@ -1,4 +1,4 @@
-package br.com.karanalpe.crud.util;
+package br.com.karanalpe.locadora.util;
 
 import java.math.BigDecimal;
 import java.util.Date;

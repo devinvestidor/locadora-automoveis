@@ -1,4 +1,4 @@
-package br.com.karanalpe.crud.model;
+package br.com.karanalpe.locadora.model;
 
 public enum Cor {
 

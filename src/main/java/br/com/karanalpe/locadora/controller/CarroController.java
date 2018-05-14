@@ -1,12 +1,12 @@
-package controller;
+package br.com.karanalpe.locadora.controller;
 
-import static br.com.karanalpe.crud.util.Constantes.DEFAULT_DATE;
+import static br.com.karanalpe.locadora.util.Constantes.DEFAULT_DATE;
 
 import java.io.Serializable;
 import java.util.List;
 
-import br.com.karanalpe.crud.dao.CarroDAO;
-import br.com.karanalpe.crud.model.Carro;;
+import br.com.karanalpe.locadora.dao.CarroDAO;
+import br.com.karanalpe.locadora.model.Carro;;
 
 public class CarroController implements Serializable {
 

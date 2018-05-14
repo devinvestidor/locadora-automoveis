@@ -1,4 +1,4 @@
-package br.com.karanalpe.crud.mb;
+package br.com.karanalpe.locadora.mb;
 
 import java.io.Serializable;
 import java.util.List;
@@ -7,10 +7,10 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.com.karanalpe.crud.model.Carro;
-import br.com.karanalpe.crud.model.Marca;
-import controller.CarroController;
-import controller.MarcaController;
+import br.com.karanalpe.locadora.controller.CarroController;
+import br.com.karanalpe.locadora.controller.MarcaController;
+import br.com.karanalpe.locadora.model.Carro;
+import br.com.karanalpe.locadora.model.Marca;
 
 @Named
 @ViewScoped
@@ -43,6 +43,10 @@ public class CadastroCarroMB implements Serializable {
 		return idCarro;
 	}
 
+	public List<Marca> getMarcas() {
+		return marcas;
+	}
+
 	public void inicializar() {
 		setMarcas(marcaController.listarTodos());
 		if (idCarro != null) {
@@ -61,10 +65,6 @@ public class CadastroCarroMB implements Serializable {
 
 	public void setIdCarro(Long idCarro) {
 		this.idCarro = idCarro;
-	}
-
-	public List<Marca> getMarcas() {
-		return marcas;
 	}
 
 	public void setMarcas(List<Marca> marcas) {

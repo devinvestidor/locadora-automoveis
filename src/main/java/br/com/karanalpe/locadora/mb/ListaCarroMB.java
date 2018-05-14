@@ -1,4 +1,4 @@
-package br.com.karanalpe.crud.mb;
+package br.com.karanalpe.locadora.mb;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,9 +9,9 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.com.karanalpe.crud.model.Carro;
-import br.com.karanalpe.crud.util.FacesUtil;
-import controller.CarroController;
+import br.com.karanalpe.locadora.controller.CarroController;
+import br.com.karanalpe.locadora.model.Carro;
+import br.com.karanalpe.locadora.util.FacesUtil;
 
 @Named
 @ViewScoped

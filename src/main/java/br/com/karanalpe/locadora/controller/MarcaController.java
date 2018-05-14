@@ -1,11 +1,11 @@
-package controller;
+package br.com.karanalpe.locadora.controller;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import br.com.karanalpe.crud.dao.MarcaDAO;
-import br.com.karanalpe.crud.model.Marca;
+import br.com.karanalpe.locadora.dao.MarcaDAO;
+import br.com.karanalpe.locadora.model.Marca;
 
 public class MarcaController implements Serializable {
 

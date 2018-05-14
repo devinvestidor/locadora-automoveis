@@ -1,8 +1,8 @@
-package br.com.karanalpe.crud.model;
+package br.com.karanalpe.locadora.model;
 
-import static br.com.karanalpe.crud.util.Constantes.DEFAULT_BIG_DECIMAL;
-import static br.com.karanalpe.crud.util.Constantes.DEFAULT_DATE;
-import static br.com.karanalpe.crud.util.Constantes.DEFAULT_STRING;
+import static br.com.karanalpe.locadora.util.Constantes.DEFAULT_BIG_DECIMAL;
+import static br.com.karanalpe.locadora.util.Constantes.DEFAULT_DATE;
+import static br.com.karanalpe.locadora.util.Constantes.DEFAULT_STRING;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -20,6 +20,7 @@ public class Carro implements Serializable {
 
 	private Long id;
 
+	@NotNull
 	private Marca marca;
 
 	@NotEmpty
@@ -148,6 +149,12 @@ public class Carro implements Serializable {
 
 	public void setValorDiaria(BigDecimal valorDiaria) {
 		this.valorDiaria = valorDiaria;
+	}
+
+	@Override
+	public String toString() {
+		return "Carro [id=" + id + ", marca=" + marca + ", descricao=" + descricao + ", cor=" + cor + ", ano=" + ano + ", valorDiaria="
+				+ valorDiaria + ", dtCriacao=" + dtCriacao + ", dtEdicao=" + dtEdicao + "]";
 	}
 
 }

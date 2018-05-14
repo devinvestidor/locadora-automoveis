@@ -1,6 +1,6 @@
-package br.com.karanalpe.crud.dao;
+package br.com.karanalpe.locadora.dao;
 
-import static br.com.karanalpe.crud.util.Constantes.DEFAULT_LONG;
+import static br.com.karanalpe.locadora.util.Constantes.DEFAULT_LONG;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.karanalpe.crud.model.Carro;;;
+import br.com.karanalpe.locadora.model.Carro;;;
 
 public class CarroDAO implements Serializable {
 

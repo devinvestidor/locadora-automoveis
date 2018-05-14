@@ -1,7 +1,7 @@
-package br.com.karanalpe.crud.model;
+package br.com.karanalpe.locadora.model;
 
-import static br.com.karanalpe.crud.util.Constantes.DEFAULT_DATE;
-import static br.com.karanalpe.crud.util.Constantes.DEFAULT_STRING;
+import static br.com.karanalpe.locadora.util.Constantes.DEFAULT_DATE;
+import static br.com.karanalpe.locadora.util.Constantes.DEFAULT_STRING;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -32,6 +32,23 @@ public class Marca implements Serializable {
 		this.dtCriacao = dtCriacao;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Marca other = (Marca) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+
 	public String getDescricao() {
 		return descricao;
 	}
@@ -46,6 +63,14 @@ public class Marca implements Serializable {
 
 	public Long getId() {
 		return id;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
 	}
 
 	public boolean isEdicao() {
@@ -70,6 +95,11 @@ public class Marca implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "Marca [id=" + id + ", descricao=" + descricao + ", dtCriacao=" + dtCriacao + ", dtEdicao=" + dtEdicao + "]";
 	}
 
 }

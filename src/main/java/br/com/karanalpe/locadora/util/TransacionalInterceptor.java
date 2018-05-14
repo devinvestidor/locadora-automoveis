@@ -1,4 +1,4 @@
-package br.com.karanalpe.crud.util;
+package br.com.karanalpe.locadora.util;
 
 import java.io.Serializable;
 
