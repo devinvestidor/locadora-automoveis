@@ -40,14 +40,18 @@ Sistema desenvolvido com base no template [Admin Faces](https://github.com/karan
 
 <a href="http://karanalpe.com.br/wp-content/uploads/2018/05/responsividade.gif"><img src="http://karanalpe.com.br/wp-content/uploads/2018/05/responsividade.gif" title="Responsividade"/></a>
 
+
 * Filtro Menu
 <a href="http://karanalpe.com.br/wp-content/uploads/2018/05/filtro-menu.gif"><img src="http://karanalpe.com.br/wp-content/uploads/2018/05/filtro-menu.gif" title="Filtro Menu"/></a>
 
+
 * Filtro Tabela
+
 <a href="http://karanalpe.com.br/wp-content/uploads/2018/05/filtro-tabela.gif"><img src="http://karanalpe.com.br/wp-content/uploads/2018/05/filtro-tabela.gif" title="Filtro Tabela"/></a>
 
 
 * Cadastro e exclusão Marca
+
 <a href="http://karanalpe.com.br/wp-content/uploads/2018/05/cadastro-marca.gif"><img src="http://karanalpe.com.br/wp-content/uploads/2018/05/cadastro-marca.gif" title="Cadastro e exclusão Marca"/></a>
 
 
