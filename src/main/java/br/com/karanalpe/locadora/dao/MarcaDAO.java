@@ -52,6 +52,10 @@ public class MarcaDAO implements Serializable {
 		return novoId;
 	}
 
+	public static Integer getTotal() {
+		return getMarcas().size();
+	}
+
 	public static List<Marca> listarTodos() {
 		ordenarPor(Comparator.comparing(Marca::getId));
 		return getMarcas();

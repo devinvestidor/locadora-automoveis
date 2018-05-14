@@ -16,6 +16,10 @@ public class CarroController implements Serializable {
 		CarroDAO.excluir(carro);
 	}
 
+	public Integer getTotal() {
+		return CarroDAO.getTotal();
+	}
+
 	public List<Carro> listarTodos() {
 		return CarroDAO.listarTodos();
 	}

@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html">
+
+<section class="content-header" style="padding-left: 0px">
+    <h1 >Home</h1>
+</section>
+	<p:spacer height="15px"/>
+	<div class="row">
+	
+		<div class="clearfix visible-sm-block"></div>
+		
+		<div class="col-md-3 col-sm-6 col-xs-12">
+		    <div class="info-box">
+		        <p:link href="/pages/carro/lista-carro.xhtml"> 
+		        	<span class="info-box-icon bg-yellow"><i class="icon fa fa-car"></i></span>
+		        </p:link>
+		        <div class="info-box-content">
+					<span class="info-box-text">Total de Carros</span>
+		            <span class="info-box-number">#{telaInicialMB.totalCarros}</span>
+		        </div>
+		    </div>
+		</div>
+		
+		<div class="col-md-3 col-sm-6 col-xs-12">
+		    <div class="info-box">
+		    	<p:link href="/pages/marca/lista-marca.xhtml">
+		        	<span class="info-box-icon bg-blue"><i class="icon fa fa-sitemap"></i></span>
+		        </p:link>
+		        <div class="info-box-content">
+					<span class="info-box-text">Total de Marcas</span>
+		            <span class="info-box-number">#{telaInicialMB.totalMarcas}</span>
+		        </div>
+		    </div>
+		</div>		
+		
+	
+	</div>
+        
+</ui:composition>

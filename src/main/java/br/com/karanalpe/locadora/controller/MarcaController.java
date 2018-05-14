@@ -15,6 +15,10 @@ public class MarcaController implements Serializable {
 		MarcaDAO.excluir(marca);
 	}
 
+	public Integer getTotal() {
+		return MarcaDAO.getTotal();
+	}
+
 	public List<Marca> listarTodos() {
 		return MarcaDAO.listarTodos();
 	}

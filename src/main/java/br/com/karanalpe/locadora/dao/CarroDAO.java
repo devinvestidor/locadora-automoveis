@@ -46,6 +46,10 @@ public class CarroDAO implements Serializable {
 		return novoId;
 	}
 
+	public static Integer getTotal() {
+		return getCarros().size();
+	}
+
 	public static List<Carro> listarTodos() {
 		ordenarPor(Comparator.comparing(Carro::getId));
 		return getCarros();
