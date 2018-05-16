@@ -6,10 +6,7 @@
 
     <ui:define name="head">
         <h:outputStylesheet library="css" name="showcase.css"/>
-        <h:outputStylesheet library="css" name="prism.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"/>
-        <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
-
         <link rel="shortcut icon" type="image/x-icon" href="#{resource['images/favicon.ico']}"/>
 
         <title>Locadora de Carros</title>
@@ -35,6 +32,15 @@
         <ui:include src="/includes/top-menu.xhtml"/>
     </ui:define>
     
+    <ui:define name="controlsidebar-tabs">
+        <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+        <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+    </ui:define>
+     
+   <ui:define name="controlsidebar-content">
+        <ui:include src="/includes/controlsidebar-tabs-content.xhtml"/>
+    </ui:define>
+    
     <ui:define name="content-end">
         <section class="content">
             <ui:insert name="code"/>
@@ -50,7 +56,6 @@
             <i>v1.0</i>
         </div>
 
-        <h:outputScript library="js" name="prism.js"  target="head"/>
     </ui:define>
 
 
