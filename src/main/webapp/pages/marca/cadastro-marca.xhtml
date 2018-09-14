@@ -2,7 +2,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui" xmlns:adm="http://github.com/adminfaces"
-                template="/WEB-INF/templates/template.xhtml">
+                template="#{layoutMB.template}">
 
     <ui:define name="title">
         Cadastro Marca
@@ -36,7 +36,7 @@
                         <p:commandButton value="Voltar" immediate="true"
                                          action="lista-marca?faces-redirect=true"
                                          process="@this"
-                                         icon="fa fa-close"/>
+                                         icon="fa fa-reply"/>
                                          
                     </div>
                     
@@ -48,7 +48,7 @@
                         			rendered="#{cadastroMarcaMB.marca.edicao}"
                         			action="#{cadastroMarcaMB.excluir()}"
                                     process="@this"
-                                    icon="fa fa-trash"/>
+                                    icon="fa fa-reply"/>
                         <p:separator/>
                         <p:menuitem value="Voltar" action="lista-marca?faces-redirect=true" process="@this"
                                     icon="fa fa-close"/>

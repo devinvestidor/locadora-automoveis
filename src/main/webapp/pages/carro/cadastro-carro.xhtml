@@ -2,7 +2,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui" xmlns:adm="http://github.com/adminfaces"
-                template="/WEB-INF/templates/template.xhtml">
+                template="#{layoutMB.template}">
 
     <ui:define name="title">
         Cadastro Carro
@@ -14,7 +14,7 @@
         	<f:event listener="#{cadastroCarroMB.inicializar()}" type="preRenderView"></f:event>
         </f:metadata>
 
-        <adm:breadcrumb title="Cadastro Carro #{cadastroCarroMB.carro.id}" link="cadastro-carro.xhtml?id=#{cadastroCarroMB.carro.id}"/>
+        <adm:breadcrumb title="#{empty cadastroCarroMB.carro.id ? 'Cadastrar novo carro' : 'Cadastro Carro '.concat(cadastroCarroMB.carro.id)}" link="cadastro-carro.xhtml?id=#{cadastroCarroMB.carro.id}"/>
         <h:form id="form" prependId="false">
             
             <p:focus for="capaPanel"/>			
@@ -31,12 +31,13 @@
                         				 action="#{cadastroCarroMB.excluir()}"
                                          icon="fa fa-trash"
                                          styleClass="btn-danger">
+                            <p:confirm header="Confirmação" escape="false" message="Remover &lt;b&gt;#{cadastroCarroMB.carro.descricao}&lt;/b&gt;?" icon="ui-icon-danger"/>
                         </p:commandButton>
                         <p:spacer width="5"/>
                         <p:commandButton value="Voltar" immediate="true"
                                          action="lista-carro?faces-redirect=true"
                                          process="@this"
-                                         icon="fa fa-close"/>
+                                         icon="fa fa-reply"/>
                                          
                     </div>
                     
@@ -48,64 +49,70 @@
                         			rendered="#{cadastroCarroMB.carro.edicao}"
                         			action="#{cadastroCarroMB.excluir()}"
                                     process="@this"
-                                    icon="fa fa-trash"/>
+                                    icon="fa fa-trash">
+                            <p:confirm header="Confirmação" escape="false" message="Remover &lt;b&gt;#{cadastroCarroMB.carro.descricao}&lt;/b&gt;?" icon="ui-icon-danger"/>
+                        </p:menuitem>    
                         <p:separator/>
                         <p:menuitem value="Voltar" action="lista-carro?faces-redirect=true" process="@this"
-                                    icon="fa fa-close"/>
+                                    icon="fa fa-reply"/>
                     </p:splitButton>
-
-                    
 
                     <p:separator/>
 
                     <div class="ui-fluid">
-                    	<p:panelGrid id="capaPanel" columns="4" layout="grid">
-                    	
-                    		<p:outputLabel value="ID" for="id"/>
-                    		<p:inputText id="id" value="#{cadastroCarroMB.carro.id}" disabled="true"/>                    	
-                   		
-                    		<p:outputLabel value="Marca" for="marca"/>
-                    		<p:selectOneMenu id="marca" value="#{cadastroCarroMB.carro.marca}">
-                    			<f:selectItem itemLabel="Selecione"/>
-                    			<f:selectItems value="#{cadastroCarroMB.marcas}" var="marca" itemLabel="#{marca.descricao}" itemValue="#{marca}"/>
+                        <p:panelGrid id="capaPanel" columns="4" layout="grid">
+                            <p:outputLabel value="ID" for="id"/>
+                            <p:inputText id="id" value="#{cadastroCarroMB.carro.id}" disabled="true"/>                    	
 
-                    		</p:selectOneMenu>                       		   
-                    		
-                    		<p:outputLabel value="Descrição" for="descricao"/>
-                    		<p:inputText id="descricao" value="#{cadastroCarroMB.carro.descricao}"/>                    		
-                    		
-                    		<p:outputLabel value="Cor" for="cor"/>
-                    		<p:selectOneMenu id="cor" value="#{cadastroCarroMB.carro.cor}">
-                    			<f:selectItem itemLabel="Selecione"/>
-                    			<f:selectItem itemLabel="Branco" itemValue="BRANCO"/>
-                    			<f:selectItem itemLabel="Prata" itemValue="PRATA"/>                    		
-                    			<f:selectItem itemLabel="Preto" itemValue="PRETO"/>
-                    			<f:selectItem itemLabel="Vermelho" itemValue="VERMELHO"/>
-                    		</p:selectOneMenu>   
-                    		
-                    		
-                    		<p:outputLabel value="Ano" for="ano"/>
-                    		<p:inputText id="ano" value="#{cadastroCarroMB.carro.ano}"/>
-                    		
-                    		<p:outputLabel value="Valor Diária" for="valorDiaria"/>                    		
-                    		<p:inputNumber id="valorDiaria" value="#{cadastroCarroMB.carro.valorDiaria}" symbol="R$ "/>                    		
-                    		                    		                       		                 		                 		
-                    		
- 							<p:outputLabel value="Criação" for="criacao"/>
- 							<p:inputText id="criacao" value="#{cadastroCarroMB.carro.dtCriacao}" disabled="true">
- 								<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" timeZone="America/Sao_Paulo"/>
- 							</p:inputText>
- 							
- 							<p:outputLabel value="Edição" for="edicao"/>
- 							<p:inputText id="edicao" value="#{cadastroCarroMB.carro.dtEdicao}" disabled="true">
- 								<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" timeZone="America/Sao_Paulo"/>
- 							</p:inputText>     
- 							             	
-                    	</p:panelGrid>
+                            <p:outputLabel value="Marca" for="marca"/>
+                            <p:selectOneMenu id="marca" value="#{cadastroCarroMB.carro.marca}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{cadastroCarroMB.marcas}" var="marca" itemLabel="#{marca.descricao}" itemValue="#{marca}"/>
+
+                            </p:selectOneMenu>                       		   
+
+                            <p:outputLabel value="Descrição" for="descricao"/>
+                            <p:inputText id="descricao" value="#{cadastroCarroMB.carro.descricao}"/>                    		
+
+                            <p:outputLabel value="Cor" for="cor"/>
+                            <p:selectOneMenu id="cor" value="#{cadastroCarroMB.carro.cor}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItem itemLabel="Branco" itemValue="BRANCO"/>
+                                <f:selectItem itemLabel="Prata" itemValue="PRATA"/>                    		
+                                <f:selectItem itemLabel="Preto" itemValue="PRETO"/>
+                                <f:selectItem itemLabel="Vermelho" itemValue="VERMELHO"/>
+                            </p:selectOneMenu>   
+
+
+                            <p:outputLabel value="Ano" for="ano"/>
+                            <p:inputText id="ano" value="#{cadastroCarroMB.carro.ano}"/>
+
+                            <p:outputLabel value="Valor Diária" for="valorDiaria"/>                    		
+                            <p:inputNumber id="valorDiaria" value="#{cadastroCarroMB.carro.valorDiaria}" symbol="R$ "/>                    		
+
+
+                            <p:outputLabel value="Criação" for="criacao"/>
+                            <p:inputText id="criacao" value="#{cadastroCarroMB.carro.dtCriacao}" disabled="true">
+                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" timeZone="America/Sao_Paulo"/>
+                            </p:inputText>
+
+                            <p:outputLabel value="Edição" for="edicao"/>
+                            <p:inputText id="edicao" value="#{cadastroCarroMB.carro.dtEdicao}" disabled="true">
+                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" timeZone="America/Sao_Paulo"/>
+                            </p:inputText>     
+
+                        </p:panelGrid>
                     
                     </div>
                 </div>
             </div>
+            
+              <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" styleClass="box-danger box-solid">
+                <p:commandButton value="Yes" type="button" styleClass="btn-primary ui-confirmdialog-yes"
+                                 icon="fa fa-check"/>
+                <p:commandButton value="No" type="button" styleClass="btn-danger ui-confirmdialog-no"
+                                 icon="fa fa-close"/>
+            </p:confirmDialog>
         </h:form>
 
     </ui:define>

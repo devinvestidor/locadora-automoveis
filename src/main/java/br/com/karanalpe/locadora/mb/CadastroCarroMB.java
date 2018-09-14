@@ -11,6 +11,8 @@ import br.com.karanalpe.locadora.controller.CarroController;
 import br.com.karanalpe.locadora.controller.MarcaController;
 import br.com.karanalpe.locadora.model.Carro;
 import br.com.karanalpe.locadora.model.Marca;
+import org.omnifaces.util.Faces;
+import org.omnifaces.util.Messages;
 
 @Named
 @ViewScoped
@@ -32,6 +34,8 @@ public class CadastroCarroMB implements Serializable {
 
 	public String excluir() {
 		carroController.excluir(carro);
+                Messages.addInfo(null, "Carro excluído com sucesso!");
+                Faces.getFlash().setKeepMessages(true);
 		return "lista-carro.xhtml?faces-redirect=true";
 	}
 
@@ -52,10 +56,17 @@ public class CadastroCarroMB implements Serializable {
 		if (idCarro != null) {
 			carro = carroController.porId(idCarro);
 		}
+                
+                if(carro == null) {
+                    carro = new Carro();
+                }
 	}
 
 	public String salvar() {
+                final  String msgCadastro = carro.isInclusao() ? "Carro incluído com sucesso!":"Carro alterado com sucesso!";
 		carroController.salvar(carro);
+                Messages.addInfo(null, msgCadastro);
+                Faces.getFlash().setKeepMessages(true);
 		return "lista-carro.xhtml?faces-redirect=true";
 	}
 

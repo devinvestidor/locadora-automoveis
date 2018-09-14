@@ -4,7 +4,9 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:adm="http://github.com/adminfaces"
-                template="/WEB-INF/templates/template.xhtml">
+                template="#{layoutMB.template}">
+
+    <ui:param name="title" value="Pesquisa Carro"/>
 
     <ui:define name="head-end">
         <style type="text/css">
@@ -25,85 +27,89 @@
         </style>
     </ui:define>
 
-    <ui:define name="title">
-        Pesquisa Carro
-    </ui:define>
+        <ui:define name="description">
+            Pesquise de acordo com os filtros 
+        </ui:define>
 
-    <ui:define name="description">
-        Pesquise de acordo com os filtros 
-    </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <p:commandButton action="cadastro-carro?faces-redirect=true" ajax="false" icon="fa fa-plus"
+                                         value="Novo" styleClass="btn-primary"/>
+                        <p:spacer width="5"/>
+                        <p:commandButton value="Excluir Selecionado(s)" icon="fa fa-trash" styleClass="btn-danger"
+                                         action="#{listaCarroMB.excluirSelecionados()}"
+                                         process="@form" update="@form">
+                            
+                                <p:confirm header="Confirmação" escape="false" message="Remover carros selecionados?" icon="ui-icon-danger"/>
+                        </p:commandButton>
+                        <p:spacer width="5"/>
+                        <p:commandButton value="Olhar Selecionado(s)" 
+                                         oncomplete="PF('carrosSelecionados').show()"
+                                         update="@(.ui-dialog)" 
+                                         styleClass="btn-info"
+                                         icon="fa fa-search"/>
+                        <p:separator/>
 
-    <ui:define name="body">
-        <adm:breadcrumb title="Pesquisa Carro"/>
 
-			<h:form>
-            	<div class="box box-primary">
-                	<div class="box-header with-border">
-                    	<p:commandButton action="cadastro-carro?faces-redirect=true" ajax="false" icon="fa fa-plus"
-                         	            value="Novo" styleClass="btn-primary"/>
-                    	<p:spacer width="5"/>
-	                    <p:commandButton value="Excluir Selecionado(s)" icon="fa fa-trash" styleClass="btn-danger"
-	                    			     action="#{listaCarroMB.excluirSelecionados()}"
-	                                     process="@form" update="@form"/>
-	                    <p:spacer width="5"/>
-	                    <p:commandButton value="Olhar Selecionado(s)" 
-	                    				 oncomplete="PF('carrosSelecionados').show()"
-	                    				 update="@(.ui-dialog)" 
-	                    				 styleClass="btn-info"
-	                                     icon="fa fa-search"/>
-	                    <p:separator/>
-	                    
-	                    
-	                    <p:dataTable id="carroTable" widgetVar="carroTable" rows="10"
-	                    			 value="#{listaCarroMB.carros}" var="carro" rowKey="#{carro.id}"
-	                    			 selection="#{listaCarroMB.carrosSelecionados}"	                    			 
-	                                 paginator="true" 	                                 
-	                                 paginatorPosition="bottom"	                                 
-	                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
-	                                 currentPageReportTemplate=""
-	                                 rowsPerPageTemplate="5,10,15,20,30">
-	
-	
-	
-	                        <p:column selectionMode="multiple" width="5%" styleClass="align-center"/>
-	                        
-	                        <p:column headerText="Descrição"
-	                        		  filterBy="#{carro.descricao}"
-	                        		  sortBy="#{carro.descricao}" filterMatchMode="contains">
-	                        	<h:link value="#{carro.descricao}" outcome="cadastro-carro.xhtml">
-	                        		<f:param name="id" value="#{carro.id}"/>	                        	
-	                        	</h:link>	                        
-	                        </p:column>	 
-	                        
-	                        <p:column headerText="Marca"
-	                        	      filterBy="#{carro.marca.descricao}"
-	                        		  sortBy="#{carro.marca.descricao}" filterMatchMode="contains">
-	                        	<h:outputLabel value="#{carro.marca.descricao}" />
-	                        </p:column>	               
-	                        
-	                        <p:column headerText="Diária"
-	                        	      filterBy="#{carro.valorDiaria}"
-	                        		  sortBy="#{carro.valorDiaria}" filterMatchMode="contains">
-	                        	<h:outputLabel value="R$ #{carro.valorDiaria}" />
-	                        </p:column>    	                               	                            	                                                                  
-	                        
-	                        	
-	                    </p:dataTable>
-					</div>
-	            </div>
-        	</h:form>
-        	
-        	<p:dialog header="Carros Selecionadas" widgetVar="carrosSelecionados" height="250"
-                  	  width="400" responsive="true" styleClass="box-success">
-	            <p:dataList id="carrosSelecionados" value="#{listaCarroMB.carrosSelecionados}" var="carro"
-	                        type="definition">	                        
-	                        
-	                        ID: #{carro.id} - Descrição: #{carro.descricao} - Marca: #{carro.marca.descricao}
+                        <p:dataTable id="carroTable" widgetVar="carroTable" rows="10"
+                                     value="#{listaCarroMB.carros}" var="carro" rowKey="#{carro.id}"
+                                     selection="#{listaCarroMB.carrosSelecionados}"	                    			 
+                                     paginator="true" 	                                 
+                                     paginatorPosition="bottom"	                                 
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+                                     currentPageReportTemplate=""
+                                     rowsPerPageTemplate="5,10,15,20,30">
 
-	            </p:dataList>
-			</p:dialog>
 
-        
-    </ui:define>
+
+                            <p:column selectionMode="multiple" width="5%" styleClass="align-center"/>
+
+                            <p:column headerText="Descrição"
+                                      filterBy="#{carro.descricao}"
+                                      sortBy="#{carro.descricao}" filterMatchMode="contains">
+                                <h:link value="#{carro.descricao}" outcome="cadastro-carro.xhtml">
+                                    <f:param name="id" value="#{carro.id}"/>	                        	
+                                </h:link>	                        
+                            </p:column>	 
+
+                            <p:column headerText="Marca"
+                                      filterBy="#{carro.marca.descricao}"
+                                      sortBy="#{carro.marca.descricao}" filterMatchMode="contains">
+                                <h:outputLabel value="#{carro.marca.descricao}" />
+                            </p:column>	               
+
+                            <p:column headerText="Diária"
+                                      filterBy="#{carro.valorDiaria}"
+                                      sortBy="#{carro.valorDiaria}" filterMatchMode="contains">
+                                <h:outputLabel value="R$ #{carro.valorDiaria}" />
+                            </p:column>    	                               	                            	                                                                  
+
+
+                        </p:dataTable>
+                    </div>
+                </div>
+                
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" styleClass="box-danger box-solid">
+                    <p:commandButton value="Yes" type="button" styleClass="btn-primary ui-confirmdialog-yes"
+                                     icon="fa fa-check"/>
+                    <p:commandButton value="No" type="button" styleClass="btn-danger ui-confirmdialog-no"
+                                     icon="fa fa-close"/>
+                </p:confirmDialog>
+            </h:form>
+
+            <p:dialog header="Carros Selecionadas" widgetVar="carrosSelecionados" height="250"
+                      width="400" responsive="true" styleClass="box-success">
+                <p:dataList id="carrosSelecionados" value="#{listaCarroMB.carrosSelecionados}" var="carro"
+                            type="definition">	                        
+
+                    ID: #{carro.id} - Descrição: #{carro.descricao} - Marca: #{carro.marca.descricao}
+
+                </p:dataList>
+            </p:dialog>
+
+
+        </ui:define>
 
 </ui:composition>

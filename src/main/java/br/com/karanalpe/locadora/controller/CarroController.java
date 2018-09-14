@@ -6,7 +6,9 @@ import java.io.Serializable;
 import java.util.List;
 
 import br.com.karanalpe.locadora.dao.CarroDAO;
-import br.com.karanalpe.locadora.model.Carro;;
+import br.com.karanalpe.locadora.model.Carro;import org.omnifaces.util.Faces;
+import org.omnifaces.util.Messages;
+;
 
 public class CarroController implements Serializable {
 
@@ -32,9 +34,7 @@ public class CarroController implements Serializable {
 		if (carro.isInclusao()) {
 			carro.setId(CarroDAO.getNovoId());
 			carro.setDtCriacao(DEFAULT_DATE);
-		}
-
-		if (carro.isEdicao()) {
+		} else if (carro.isEdicao()) {
 			carro.setDtEdicao(DEFAULT_DATE);
 		}
 
